@@ -36,25 +36,5 @@ class ScoreViewModel extends ChangeNotifier {
         log(error.toString(), name: "error here");
       }
     });
-
-    // await _apiService. (data).then((value) {
-    //   // final userPreference = Provider.of<UserViewModel>(context, listen: false);
-    //   // userPreference.saveUser(value['access']);
-    //   log(value.toString(), name: "log value");
-    //   // log(value['access'], name: "access token value in login api");
-    //   // sp.setString("tokenValue", value['access'].toString());
-    //   UserModel(access: value['access'].toString());
-
-    //   Fluttertoast.showToast(msg: "Login Sucessfully");
-    //   navigationRoute(context, route: "bottomNavigationWidget");
-    //   if (kDebugMode) {
-    //     log("value----${value.toString()}");
-    //   }
-    // }).onError((error, stackTrace) {
-    //   if (kDebugMode) {
-    //     Fluttertoast.showToast(msg: error.toString());
-    //     log(error.toString(), name: "error here");
-    //   }
-    // });
   }
 }

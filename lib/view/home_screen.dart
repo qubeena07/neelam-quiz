@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PointViewModel pointViewModel = PointViewModel();
   ScoreViewModel scoreViewModel = ScoreViewModel();
-  static const maxSeconds = 120;
+  static const maxSeconds = 20;
   int seconds = maxSeconds;
   Timer? timer;
 
@@ -41,18 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
       if (seconds == 0) {
         timer.cancel();
         final sp = await SharedPreferences.getInstance();
-        final senderValue = sp.getString("username");
+        final senderValue = sp.getString("userId");
+        log(senderValue.toString(), name: "senderValue ");
 
         seconds = maxSeconds;
-        pointViewModel.resetScore();
         Map data = {
-          "score": "900",
+          "score": pointViewModel.score.toInt(),
           //"${pointViewModel.score}",
           "timesPlayed": "120",
-          "sender": "$senderValue"
+          "sender": 4,
         };
         // ignore: use_build_context_synchronously
         scoreViewModel.scoreApi(data, context);
+        pointViewModel.resetScore();
       } else {
         setState(() => seconds--);
       }
@@ -180,14 +181,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     });
 
                                                     if (value.responseList
-                                                            ?.data!.solution ==
+                                                            ?.data!.solution
+                                                            .toString() ==
                                                         value.viewAnswer[index]
                                                             .toString()) {
                                                       pointViewModel
                                                           .totalScore();
-
-                                                      log("${pointViewModel.score}",
-                                                          name: "score value");
 
                                                       pointViewModel
                                                           .questionNum();
@@ -210,6 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         const Duration(
                                                             seconds: 1),
                                                         () async {
+                                                          log("else statement here");
                                                           await apiViewModel
                                                               .getApiService();
 

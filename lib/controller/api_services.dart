@@ -37,10 +37,11 @@ class ApiService with ChangeNotifier {
               },
               body: json.encode(data))
           .timeout(const Duration(seconds: 600));
-      log(response.statusCode.toString(), name: 'hello');
+      log(response.statusCode.toString(), name: 'status code');
       final registerData = jsonDecode(response.body);
       final sp = await SharedPreferences.getInstance();
-      sp.setString("username", registerData["username"]);
+      sp.setString("userId", registerData["id"]);
+      log(registerData["id"].toString(), name: "userid value");
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         return registerData;
