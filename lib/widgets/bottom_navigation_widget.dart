@@ -6,19 +6,29 @@ import '../view/score_screen.dart';
 import '../view/user_profile.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
-  const BottomNavigationWidget({Key? key}) : super(key: key);
+  const BottomNavigationWidget({Key? key, this.changeIndex}) : super(key: key);
+  final int? changeIndex;
 
   @override
   State<BottomNavigationWidget> createState() => _BottomNavigationWidgetState();
 }
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  int currentIndex = 0;
+  int currentIndex = 1;
   final screens = [
     const ScoreScreen(),
     const HomeScreen(),
     const UserProfile(),
   ];
+  @override
+  void initState() {
+    if (widget.changeIndex != null) {
+      currentIndex = widget.changeIndex!;
+      setState(() {});
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

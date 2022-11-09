@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quiz_app/controller/api_services.dart';
 import 'package:quiz_app/model/user_model.dart';
 import 'package:quiz_app/utils/route_utils.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthViewModel extends ChangeNotifier {
   final _apiService = ApiService();
@@ -26,7 +25,7 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   Future<void> loginApi(Map data, BuildContext context) async {
-    final sp = await SharedPreferences.getInstance();
+    // final sp = await SharedPreferences.getInstance();
     await _apiService.postLoginApi(data).then((value) {
       // final userPreference = Provider.of<UserViewModel>(context, listen: false);
       // userPreference.saveUser(value['access']);

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/resources/app_colors.dart';
-import 'package:quiz_app/view/score_screen.dart';
 import 'package:quiz_app/view_model/api_view_model.dart';
 import 'package:quiz_app/view_model/point_view_model.dart';
 import 'package:quiz_app/view_model/score_view_model.dart';
@@ -24,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PointViewModel pointViewModel = PointViewModel();
   ScoreViewModel scoreViewModel = ScoreViewModel();
-  static const maxSeconds = 20;
+  static const maxSeconds = 10;
   int seconds = maxSeconds;
   Timer? timer;
 
@@ -46,10 +45,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
         seconds = maxSeconds;
         Map data = {
-          "score": pointViewModel.score.toInt(),
+          "score": 9999,
+          //pointViewModel.score.toInt(),
           //"${pointViewModel.score}",
-          "timesPlayed": "120",
-          "sender": 4,
+          "timesPlayed": "70",
+          "sender": 1,
         };
         // ignore: use_build_context_synchronously
         scoreViewModel.scoreApi(data, context);
@@ -72,7 +72,22 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: (seconds == 0)
-            ? const ScoreScreen()
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircularProgressIndicator.adaptive(),
+                    SizedBox(height: 20),
+                    Text(
+                      'Calculating Score',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             : Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(

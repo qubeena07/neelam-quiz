@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/api_model.dart';
+import 'package:quiz_app/model/score_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../resources/app_url.dart';
@@ -78,7 +79,7 @@ class ApiService with ChangeNotifier {
     }
   }
 
-  Future postScoreApi(Map data) async {
+  Future<dynamic> postScoreApi(Map data) async {
     final sp = await SharedPreferences.getInstance();
     final tokenValue = sp.getString("accessToken").toString();
     try {
@@ -93,9 +94,10 @@ class ApiService with ChangeNotifier {
             body: json.encode(data),
           )
           .timeout(const Duration(seconds: 600));
-      final responseData = jsonDecode(response.body.toString());
+      final responseData = jsonDecode(response.body);
+      log(responseData.toString(), name: 'data value');
       if (response.statusCode == 200 || response.statusCode == 201) {
-        return responseData;
+        return ScoreModel.fromJson(responseData);
       }
     } catch (e) {
       throw Exception(e.toString());
