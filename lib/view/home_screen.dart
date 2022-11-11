@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PointViewModel pointViewModel = PointViewModel();
   ScoreViewModel scoreViewModel = ScoreViewModel();
-  static const maxSeconds = 3;
+  static const maxSeconds = 60;
   int seconds = maxSeconds;
   Timer? timer;
 

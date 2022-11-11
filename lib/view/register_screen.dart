@@ -203,13 +203,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             };
                             log(data.toString(), name: 'register body');
                             await authViewModel.registerApi(data, context);
-                            //log("Data: ${data.toString()}");
-                            // print("Api hit");
-                          }
-
-                          // Fluttertoast.showToast(msg: "Register Sucessfully");
-                          // navigationRoute(context, route: "");
-                          )
+                          })
                     ],
                   ),
                 ),
