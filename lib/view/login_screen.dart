@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: Color.fromARGB(160, 206, 206, 206),
                           filled: true,
                           label: Text(
-                            "Email",
+                            "Username",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w300,

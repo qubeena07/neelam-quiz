@@ -12,6 +12,7 @@ class AuthViewModel extends ChangeNotifier {
 
   Future<void> registerApi(Map data, BuildContext context) async {
     await _apiService.postRegisterApi(data).then((value) {
+      log(value.toString(), name: "register value in auth view model");
       Fluttertoast.showToast(msg: "Registration Sucessfully");
       navigationRoute(context, route: "loginScreen");
       if (kDebugMode) {
@@ -19,6 +20,7 @@ class AuthViewModel extends ChangeNotifier {
       }
     }).onError((error, stackTrace) {
       if (kDebugMode) {
+        log(error.toString(), name: "error in register auth view model");
         Fluttertoast.showToast(msg: error.toString());
       }
     });

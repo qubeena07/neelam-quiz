@@ -40,14 +40,12 @@ class ApiService with ChangeNotifier {
           .timeout(const Duration(seconds: 600));
       log(response.statusCode.toString(), name: 'status code');
       final registerData = jsonDecode(response.body);
-      final sp = await SharedPreferences.getInstance();
-      sp.setString("senderId", registerData["sender"]);
-      log(registerData["sender"].toString(), name: "senderId value");
 
       if (response.statusCode == 201 || response.statusCode == 200) {
         return registerData;
       }
     } catch (e) {
+      log(e.toString(), name: "error in register api services");
       throw Exception(e.toString());
     }
   }
@@ -98,6 +96,8 @@ class ApiService with ChangeNotifier {
 
       log(responseData.toString(), name: 'data value');
       sp.setString("senderId", responseData['sender'].toString());
+      log(responseData['sender'].toString(),
+          name: "sender id value in api service");
       if (response.statusCode == 200 || response.statusCode == 201) {
         return ScoreModel.fromJson(responseData);
       }
