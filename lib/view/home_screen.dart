@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   PointViewModel pointViewModel = PointViewModel();
   ScoreViewModel scoreViewModel = ScoreViewModel();
-  static const maxSeconds = 10;
+  static const maxSeconds = 3;
   int seconds = maxSeconds;
   Timer? timer;
 
@@ -40,16 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
       if (seconds == 0) {
         timer.cancel();
         final sp = await SharedPreferences.getInstance();
-        final senderValue = sp.getString("userId");
+        final senderValue = sp.getString("senderId");
         log(senderValue.toString(), name: "senderValue ");
 
         seconds = maxSeconds;
         Map data = {
-          "score": 9999,
+          "score": pointViewModel.score,
           //pointViewModel.score.toInt(),
           //"${pointViewModel.score}",
-          "timesPlayed": "70",
-          "sender": 1,
+          "timesPlayed": "60",
+          "sender": int.parse(senderValue!),
         };
         // ignore: use_build_context_synchronously
         scoreViewModel.scoreApi(data, context);

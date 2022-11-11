@@ -25,13 +25,9 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   Future<void> loginApi(Map data, BuildContext context) async {
-    // final sp = await SharedPreferences.getInstance();
     await _apiService.postLoginApi(data).then((value) {
-      // final userPreference = Provider.of<UserViewModel>(context, listen: false);
-      // userPreference.saveUser(value['access']);
       log(value.toString(), name: "log value");
-      // log(value['access'], name: "access token value in login api");
-      // sp.setString("tokenValue", value['access'].toString());
+
       UserModel(access: value['access'].toString());
 
       Fluttertoast.showToast(msg: "Login Sucessfully");

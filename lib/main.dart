@@ -11,6 +11,7 @@ import 'package:quiz_app/view/login_screen.dart';
 import 'package:quiz_app/view/password_screen.dart';
 import 'package:quiz_app/view/register_screen.dart';
 import 'package:quiz_app/view/score_screen.dart';
+import 'package:quiz_app/view_model/all_score_view_model.dart';
 import 'package:quiz_app/view_model/auth_view_model.dart';
 import 'package:quiz_app/view_model/point_view_model.dart';
 import 'package:quiz_app/view_model/user_view_model.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (_) => AuthViewModel()),
             ChangeNotifierProvider(create: (_) => UserViewModel()),
             ChangeNotifierProvider(create: (_) => PointViewModel()),
+            ChangeNotifierProvider(create: (_) => AllScoreViewModel())
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

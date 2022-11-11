@@ -19,17 +19,15 @@ class ScoreViewModel extends ChangeNotifier {
 
   Future<void> scoreApi(Map data, BuildContext context) async {
     setScoreList(ApiResponse.loading());
-    // final sp = await SharedPreferences.getInstance();
-    // final tokenValue = sp.getString("accessToken").toString();
+
     await _apiServices.postScoreApi(data).then((value) {
       setScoreList(ApiResponse.completed(value));
-      log(data.toString(), name: "data value in score Api");
 
+      log(data.toString(), name: "data value in score Api");
       Fluttertoast.showToast(msg: "Score Saved");
-      // navigationRoute(context, route: "bottomNavigationWidget");
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
-            builder: (context) => const BottomNavigationWidget(
+            builder: (contextx) => const BottomNavigationWidget(
               changeIndex: 0,
             ),
           ),
@@ -39,7 +37,7 @@ class ScoreViewModel extends ChangeNotifier {
       }
     }).onError((error, stackTrace) {
       if (kDebugMode) {
-        log(error.toString(), name: "error here");
+        log(error.toString(), name: "error here score view modelx");
         Fluttertoast.showToast(msg: error.toString());
       }
     });

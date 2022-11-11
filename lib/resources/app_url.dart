@@ -4,4 +4,5 @@ class AppUrl {
   static var registerEndPoint = "$baseUrl/auth/users/";
   static var loginEndPoint = "$baseUrl/auth/jwt/create";
   static var scoreEndPoint = "$baseUrl/chat/myscore/";
+  static var allScoreEndPoint = "$baseUrl/chat/test/";
 }
